@@ -106,6 +106,11 @@ const icons = [
 	}
 
 ];
+//-------Milestone 1------ 
+//Partendo dalla seguente struttura dati, mostriamo in pagina tutte le icone disponibili come da layout.
+const pageIcons = document.getElementById('my_icons');
+writeArrayToPage(icons, pageIcons)
+
 
 /*
 -Milestone 2: Coloriamo le icone per tipo
@@ -113,8 +118,6 @@ const icons = [
 
 //creare un array che mi da tutti i tipi una volta
 //creare un array che contiene  colori quanti sono i tipi
-
-
 const typesList = [];
 const colorsList = [];
 for(item of icons){
@@ -136,6 +139,52 @@ icons.forEach((item) =>{
         i++;
     }
 });
+
+//Check
+console.log(typesList);
+console.log(colorsList);
+console.log(icons);
+
+// ++++++Functions++++++
+//------Milestone 1------
+/**
+ * Writes the array to the HTML page
+ * @param {array} array Array to write
+ * @param {object} page HTML object where to write the array
+ */
+function writeArrayToPage(array, page){
+    for(item of array){
+        //Destructuring each object in the array
+        const {name, prefix, type, family, color} = item;
+    
+        //Show the icons in the webpage
+        page.innerHTML += `
+        <div class="col p-4">
+            <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
+            <span>${name} </span>
+        </div>`
+    }
+}
+
+//------Milestone 2
+function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16);}
+
+//------Milestone 1------
+// for(item of icons){
+//     //Destructuring each object in the array
+//     const {name, prefix, type, family, color} = item;
+
+//     //Show the icons in the webpage
+//     document.getElementById('my_icons').innerHTML += `
+//     <div class="col p-4">
+//         <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
+//         <span>${name} </span>
+//     </div>`
+// }
+
+
+
+
 
 
 /*
@@ -163,28 +212,3 @@ icons.forEach((item) =>{
 //         ciccio = icons;
 //     }
 // console.log(ciccio);
-
-/*
--Milestone 1: Partendo dalla seguente struttura dati, 
-mostriamo in pagina tutte le icone disponibili come da layout.
-*/
-for(item of icons){
-    //Destructuring each object in the array
-    const {name, prefix, type, family, color} = item;
-
-    //Show the icons in the webpage
-    document.getElementById('my_icons').innerHTML += `
-    <div class="col p-4">
-        <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
-        <span>${name} </span>
-    </div>`
-}
-
-//Check
-console.log(typesList);
-console.log(colorsList);
-console.log(icons);
-
-
-// ++++++Functions++++++
-function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16);}
