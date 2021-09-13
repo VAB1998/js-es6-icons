@@ -108,37 +108,39 @@ const icons = [
 ];
 //-------Milestone 1------ 
 //Partendo dalla seguente struttura dati, mostriamo in pagina tutte le icone disponibili come da layout.
-const pageIcons = document.getElementById('my_icons');
-writeArrayToPage(icons, pageIcons)
 
 
-/*
--Milestone 2: Coloriamo le icone per tipo
-*/
+//------Milestone 2------ 
+// Coloriamo le icone per tipo
 
-//creare un array che mi da tutti i tipi una volta
-//creare un array che contiene  colori quanti sono i tipi
+//Create an array with all the types values not repeated
 const typesList = [];
-const colorsList = [];
 for(item of icons){
-    if(!typesList.includes(item.type)){
-        typesList.push(item.type)
-        colorsList.push(getRandomHEXColor())
-    }
+    pushNonRepeatedItemsInAnArray(typesList, item.type);
 }
 
+//Create an araay wich contains as many colors as are the types in the icons objects
+const colorsList = [];
+for(item of typesList){
+    colorsList.push(getRandomHEXColor());
+}
 
 //Indipendentemente da quanti 'type' ci sono verrà assegnato loro un colore che dipende dal tipo  
 icons.forEach((item) =>{
-    let i = 0;
+    
     //Ciclo che dipende dal numero di type
-    while(i < typesList.length){
-        if(item.type == typesList[i]){//ternary operator
-            item.color = colorsList[i];
+    typesList.forEach((typesListItem, typesListIndex) => {
+        if(item.type == typesListItem){//ternary operator
+            item.color = colorsList[typesListIndex];
         }
-        i++;
-    }
+    
+    });
 });
+
+
+
+const pageIcons = document.getElementById('my_icons');
+writeArrayToPage(icons, pageIcons)
 
 //Check
 console.log(typesList);
@@ -159,15 +161,31 @@ function writeArrayToPage(array, page){
     
         //Show the icons in the webpage
         page.innerHTML += `
-        <div class="col p-4">
+        <div class="col py-3 mx-3 rounded border border-dark">
             <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
             <span>${name} </span>
         </div>`
     }
 }
 
-//------Milestone 2
+//------Milestone 2------
+/**
+  * Pushes the items in an array that are not already in it.
+  * @param {array} receiverArray The array in which the elements are pushed.
+  * @param {*} itemToPush The item to push.
+  */
+ function pushNonRepeatedItemsInAnArray(receiverArray, itemToPush){
+
+    if (!receiverArray.includes(itemToPush)){
+      receiverArray.push(itemToPush);
+    }
+}
+
 function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16);}
+
+
+
+
 
 //------Milestone 1------
 // for(item of icons){
@@ -182,9 +200,15 @@ function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).t
 //     </div>`
 // }
 
-
-
-
+//------Milestone 2------
+// const typesList = [];
+// const colorsList = [];
+// for(item of icons){
+//     if(!typesList.includes(item.type)){
+//         typesList.push(item.type)
+//         colorsList.push(getRandomHEXColor())
+//     }
+// }
 
 
 /*
