@@ -20,7 +20,7 @@ const icons = [
 		type: 'animal',
 		family: 'fas'
 	},
-	{
+    {
 		name: 'dog',
 		prefix: 'fa-',
 		type: 'animal',
@@ -104,4 +104,28 @@ const icons = [
 		type: 'user',
 		family: 'fas'
 	}
+
 ];
+
+
+/*
+-Milestone 1: Partendo dalla seguente struttura dati, 
+mostriamo in pagina tutte le icone disponibili come da layout.
+*/
+
+
+
+
+for(item of icons){
+    //Destructuring each object in the array
+    const {name, prefix, type, family} = item;
+
+    document.getElementById('my_icons').innerHTML += `
+    <div class="col p-4">
+        <i class="${family} ${prefix+name} fa-3x d-block"></i>
+        <span>${name} </span>
+    </div>`
+
+}
+
+
