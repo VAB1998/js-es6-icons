@@ -139,14 +139,26 @@ icons.forEach((item) =>{
 /*
 -Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 */
+
+let selectType = document.getElementById('select_type');
 typesList.forEach((item) =>{
-    document.getElementById('select_type').innerHTML +=`
+    selectType.innerHTML +=`
     <option class="option_type" value="${item}">${item}</option>
     `;
 });
 
+const optionType = document.getElementsByClassName('option_type',);
 
-document.getElementById('');
+selectType.addEventListener('change', () =>{
+    console.log("Dentro event listener");
+    console.log(selectType.value);
+})
+
+
+for(let tag of optionType){
+    // console.log(tag)
+}
+
 
 /*
 -Milestone 1: Partendo dalla seguente struttura dati, 
