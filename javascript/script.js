@@ -210,38 +210,3 @@ function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).t
  function writeOptionsToPage(array, page){
     array.forEach((item) => selectType.innerHTML +=`<option class="option_type" value="${item}">${item}</option>`);
 }
-
-
-
-
-//------Milestone 1------
-// for(item of icons){
-//     //Destructuring each object in the array
-//     const {name, prefix, type, family, color} = item;
-
-//     //Show the icons in the webpage
-//     document.getElementById('my_icons').innerHTML += `
-//     <div class="col p-4">
-//         <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
-//         <span>${name} </span>
-//     </div>`
-// }
-
-//------Milestone 2------
-// const typesList = [];
-// const colorsList = [];
-// for(item of icons){
-//     if(!typesList.includes(item.type)){
-//         typesList.push(item.type)
-//         colorsList.push(getRandomHEXColor())
-//     }
-// }
-
-
-//------Milestone 3------
-// let selectType = document.getElementById('select_type');
-// typesList.forEach((item) =>{
-//     selectType.innerHTML +=`
-//     <option class="option_type" value="${item}">${item}</option>
-//     `;
-// });
