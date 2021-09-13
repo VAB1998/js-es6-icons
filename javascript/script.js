@@ -113,6 +113,8 @@ const icons = [
 
 //creare un array che mi da tutti i tipi una volta
 //creare un array che contiene  colori quanti sono i tipi
+
+
 const typesList = [];
 const colorsList = [];
 for(item of icons){
@@ -140,25 +142,27 @@ icons.forEach((item) =>{
 -Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 */
 
-let selectType = document.getElementById('select_type');
-typesList.forEach((item) =>{
-    selectType.innerHTML +=`
-    <option class="option_type" value="${item}">${item}</option>
-    `;
-});
+// let selectType = document.getElementById('select_type');
+// typesList.forEach((item) =>{
+//     selectType.innerHTML +=`
+//     <option class="option_type" value="${item}">${item}</option>
+//     `;
+// });
 
-const optionType = document.getElementsByClassName('option_type',);
+// const optionType = document.getElementsByClassName('option_type',);
 
-selectType.addEventListener('change', () =>{
-    console.log("Dentro event listener");
-    console.log(selectType.value);
-})
-
-
-for(let tag of optionType){
-    // console.log(tag)
-}
-
+// selectType.addEventListener('change', () =>{
+   
+//     let ciccio = [];
+//     //Check
+//     console.log("Dentro event listener");
+//     console.log(selectType.value);
+//     ciccio = icons.filter((items) => items.type == selectType.value);
+//     if (selectType.value == 'all') {
+       
+//         ciccio = icons;
+//     }
+// console.log(ciccio);
 
 /*
 -Milestone 1: Partendo dalla seguente struttura dati, 
@@ -175,7 +179,6 @@ for(item of icons){
         <span>${name} </span>
     </div>`
 }
-
 
 //Check
 console.log(typesList);
