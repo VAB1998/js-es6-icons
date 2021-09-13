@@ -106,55 +106,73 @@ const icons = [
 	}
 
 ];
-//-------Milestone 1------ 
-//Partendo dalla seguente struttura dati, mostriamo in pagina tutte le icone disponibili come da layout.
-
 
 //------Milestone 2------ 
-// Coloriamo le icone per tipo
-
-//Create an array with all the types values not repeated
+//Create an array with all the types values
 const typesList = [];
 for(item of icons){
     pushNonRepeatedItemsInAnArray(typesList, item.type);
 }
 
-//Create an araay wich contains as many colors as are the types in the icons objects
+//Create an array wich contains as many colors as are the types in the icons objects
 const colorsList = [];
 for(item of typesList){
     colorsList.push(getRandomHEXColor());
 }
 
-//Indipendentemente da quanti 'type' ci sono verrà assegnato loro un colore che dipende dal tipo  
+//Add a new property (color: 'hex color') to the icons objects that depends on the type
+//Access to the icon
 icons.forEach((item) =>{
     
-    //Ciclo che dipende dal numero di type
+    //Access to the icons objects
     typesList.forEach((typesListItem, typesListIndex) => {
-        if(item.type == typesListItem){//ternary operator
-            item.color = colorsList[typesListIndex];
-        }
-    
+        
+        //Add a new property (color) 
+        if(item.type == typesListItem) item.color = colorsList[typesListIndex]; 
     });
 });
 
-
-
-const pageIcons = document.getElementById('my_icons');
+//-------Milestone 1------ 
+let pageIcons = document.getElementById('my_icons');
 writeArrayToPage(icons, pageIcons)
 
+//------Milestone 3------
+//Write the options with a value that depends on the object type
+let selectType = document.getElementById('select_type');
+writeOptionsToPage(typesList, selectType)
+
+
+selectType.addEventListener('change', () =>{
+    
+    if (selectType.value == 'all'){
+        arrayPerType = icons;
+    } else{
+        arrayPerType = icons.filter((items) =>items.type == selectType.value);
+    }  
+
+    //------Milestone 1------
+    writeArrayToPage(arrayPerType, pageIcons);
+
+    //Check
+    console.log('Array per type: ' ,arrayPerType);
+    console.log('Value selected: ' ,selectType.value);
+    
+});
+
 //Check
-console.log(typesList);
-console.log(colorsList);
-console.log(icons);
+console.log('List of types',typesList);
+console.log('List of colors', colorsList);
+console.log('List of icons with colors: ', icons);
 
 // ++++++Functions++++++
 //------Milestone 1------
 /**
- * Writes the array to the HTML page
+  * Writes to the HTML page depending on the info that are in the array
  * @param {array} array Array to write
  * @param {object} page HTML object where to write the array
  */
 function writeArrayToPage(array, page){
+    page.innerHTML = '';
     for(item of array){
         //Destructuring each object in the array
         const {name, prefix, type, family, color} = item;
@@ -183,6 +201,15 @@ function writeArrayToPage(array, page){
 
 function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16);}
 
+//------Milestone 3------
+/**
+ * Writes options to the HTML page depending on the info that are in the array
+ * @param {array} array
+ * @param {object} page HTML object where to write the array
+ */
+ function writeOptionsToPage(array, page){
+    array.forEach((item) => selectType.innerHTML +=`<option class="option_type" value="${item}">${item}</option>`);
+}
 
 
 
@@ -211,28 +238,10 @@ function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).t
 // }
 
 
-/*
--Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-*/
-
+//------Milestone 3------
 // let selectType = document.getElementById('select_type');
 // typesList.forEach((item) =>{
 //     selectType.innerHTML +=`
 //     <option class="option_type" value="${item}">${item}</option>
 //     `;
 // });
-
-// const optionType = document.getElementsByClassName('option_type',);
-
-// selectType.addEventListener('change', () =>{
-   
-//     let ciccio = [];
-//     //Check
-//     console.log("Dentro event listener");
-//     console.log(selectType.value);
-//     ciccio = icons.filter((items) => items.type == selectType.value);
-//     if (selectType.value == 'all') {
-       
-//         ciccio = icons;
-//     }
-// console.log(ciccio);
