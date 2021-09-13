@@ -107,28 +107,8 @@ const icons = [
 
 ];
 
-
 /*
--Milestone 1: Partendo dalla seguente struttura dati, 
-mostriamo in pagina tutte le icone disponibili come da layout.
-*/
-
-
-for(item of icons){
-    //Destructuring each object in the array
-    const {name, prefix, type, family} = item;
-
-    //Show the icons in the webpage
-    document.getElementById('my_icons').innerHTML += `
-    <div class="col p-4">
-        <i class="${family} ${prefix+name} fa-3x d-block" style="color: }"></i>
-        <span>${name} </span>
-    </div>`
-}
-
-
-/*
-Milestone 2: Coloriamo le icone per tipo
+-Milestone 2: Coloriamo le icone per tipo
 */
 
 //creare un array che mi da tutti i tipi una volta
@@ -143,55 +123,53 @@ for(item of icons){
 }
 
 
-// icons.forEach((item) =>{
-//     typesList.forEach((typesListitem, index) =>{
-//     if(item.type == typesListitem){
-//         item.color = colorsList[index];
-//     } else if(item.type == typesListitem) {
-//         item.color = colorsList[index];
-//     } else if(item.type == typesListitem) {
-//         item.color = colorsList[index];
-//     }});
-// });
-
 //Indipendentemente da quanti 'type' ci sono verrà assegnato loro un colore che dipende dal tipo  
 icons.forEach((item) =>{
     let i = 0;
     //Ciclo che dipende dal numero di type
     while(i < typesList.length){
-        if(item.type == typesList[i]){
+        if(item.type == typesList[i]){//ternary operator
             item.color = colorsList[i];
         }
         i++;
     }
 });
-console.log(typesList);
-console.log(colorsList);
-
-console.log(icons);
-
-
-
-
-
-
-
-
-function pushNonRepeatedItemsInAnArray(receiverArray, itemToPush){
-
-    if (!receiverArray.includes(itemToPush)){
-  
-      receiverArray.push(itemToPush);
-    }
-  }
-
-
-
 
 
 /*
-Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+-Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 */
+typesList.forEach((item) =>{
+    document.getElementById('select_type').innerHTML +=`
+    <option class="option_type" value="${item}">${item}</option>
+    `;
+});
+
+
+document.getElementById('');
+
+/*
+-Milestone 1: Partendo dalla seguente struttura dati, 
+mostriamo in pagina tutte le icone disponibili come da layout.
+*/
+for(item of icons){
+    //Destructuring each object in the array
+    const {name, prefix, type, family, color} = item;
+
+    //Show the icons in the webpage
+    document.getElementById('my_icons').innerHTML += `
+    <div class="col p-4">
+        <i class="${family} ${prefix+name} fa-3x d-block" style="color: ${color}"></i>
+        <span>${name} </span>
+    </div>`
+}
+
+
+//Check
+console.log(typesList);
+console.log(colorsList);
+console.log(icons);
+
 
 // ++++++Functions++++++
-function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16); }
+function getRandomHEXColor() { return '#' + Math.floor(Math.random()*16777215).toString(16);}
